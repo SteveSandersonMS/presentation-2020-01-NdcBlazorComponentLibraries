@@ -1,8 +1,10 @@
 ﻿@inject IJSRuntime JS
 
-<div class="ct-chart"></div>
+<div class="@AspectRatio.ToCssClass()"></div>
 
-@code {     
+@code {
+    [Parameter] public AspectRatio? AspectRatio { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
