@@ -6,7 +6,7 @@ Welcome to your new app.
 
 <input type="checkbox" @bind="includeSeries" />
 
-<Chart Type="ChartType.Bar" Labels="@Labels">
+<Chart Type="ChartType.Bar" Labels="@Labels" class="my-background" style="border: 3px dashed green">
     @if (includeSeries)
     {
         <Series Values="@Values" Name="Alpha" />

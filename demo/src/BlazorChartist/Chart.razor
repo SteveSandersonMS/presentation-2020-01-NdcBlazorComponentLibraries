@@ -1,12 +1,14 @@
 ﻿@inject IJSRuntime JS
 
-<div @ref="elem" class="@AspectRatio.ToCssClass()">
+<div @ref="elem" @attributes="@ExtraAttributes" class="@CssClass">
     <CascadingValue Value="this">
         @ChildContent
     </CascadingValue>
 </div>
 
 @code {
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
+
     [Parameter] public RenderFragment ChildContent { get; set; }
 
     [Parameter] public ChartType Type { get; set; } = ChartType.Line;
@@ -16,6 +18,11 @@
     [Parameter] public IEnumerable<string> Labels { get; set; }
 
     [Parameter] public bool ShowArea { get; set; }
+
+    // Combine any supplied 'class' with the generated one
+    private string CssClass => ExtraAttributes != null && ExtraAttributes.TryGetValue("class", out var suppliedClass)
+        ? $"{suppliedClass} {AspectRatio.ToCssClass()}"
+        : AspectRatio.ToCssClass();
 
     internal ChartData Data { get; private set; } = new ChartData();
 
