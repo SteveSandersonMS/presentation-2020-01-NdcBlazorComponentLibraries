@@ -22,7 +22,7 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   workingDirectory: demo
   displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet pack --configuration $(buildConfiguration) /p:VersionSuffix=$(Build.BuildNumber)'
+- script: dotnet pack --configuration $(buildConfiguration) /p:VersionSuffix=$(Build.BuildNumber)
   workingDirectory: demo/src/BlazorChartist
   displayName: 'dotnet pack'
 - task: PublishBuildArtifacts@1
