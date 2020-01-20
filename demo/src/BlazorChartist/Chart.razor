@@ -1,15 +1,19 @@
 ﻿@inject IJSRuntime JS
 
-<div @ref="elem" class="@AspectRatio.ToCssClass()"></div>
+<div @ref="elem" class="@AspectRatio.ToCssClass()">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>
 
 @code {
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
     [Parameter] public ChartType Type { get; set; } = ChartType.Line;
 
     [Parameter] public AspectRatio? AspectRatio { get; set; }
 
     [Parameter] public IEnumerable<string> Labels { get; set; }
-
-    [Parameter] public double[][] Series { get; set; }
 
     private ElementReference elem;
 
@@ -21,9 +25,18 @@
             {
                 Elem = elem,
                 Type = Type.ToString(),
-                Labels,
-                Series,
+                Labels
             });
         }
+    }
+
+    internal async Task AddSeriesAsync<TData>(string id, IEnumerable<TData> values)
+    {
+        await JS.InvokeVoidAsync("BlazorChartist.addSeries", elem, id, values);
+    }
+
+    internal async Task RemoveSeriesAsync(string id)
+    {
+        await JS.InvokeVoidAsync("BlazorChartist.removeSeries", elem, id);
     }
 }

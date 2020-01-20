@@ -1,0 +1,22 @@
+﻿@typeparam TData
+@implements IDisposable
+@code {
+    [CascadingParameter] public Chart OwnerChart { get; set; }
+
+    [Parameter] public IEnumerable<TData> Values { get; set; }
+
+    private string id = Guid.NewGuid().ToString();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await OwnerChart.AddSeriesAsync(id, Values);
+        }
+    }
+
+    void IDisposable.Dispose()
+    {
+        _ = OwnerChart.RemoveSeriesAsync(id);
+    }
+}
