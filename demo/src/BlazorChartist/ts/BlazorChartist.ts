@@ -2,7 +2,7 @@
 
 export default class BlazorChartist {
 
-    static createChart() {
+    static createChart(options: BlazorChartistOptions) {
         var data = {
             // A labels array that can contain any sort of values
             labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
@@ -12,10 +12,18 @@ export default class BlazorChartist {
             ]
         };
 
-        // Create a new line chart object where as first parameter we pass in a selector
-        // that is resolving to our chart container element. The Second parameter
-        // is the actual data object.
-        new Chartist.Line('.ct-chart', data);
+        switch (options.type) {
+            case 'Bar':
+                new Chartist.Bar(options.elem, data);
+                break;
+            case 'Line':
+                new Chartist.Line(options.elem, data);
+                break;
+        }
     }
+}
 
+interface BlazorChartistOptions {
+    elem: Element,
+    type: 'Bar' | 'Line';
 }

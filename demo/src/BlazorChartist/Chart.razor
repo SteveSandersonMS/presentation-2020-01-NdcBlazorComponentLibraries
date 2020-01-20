@@ -1,15 +1,23 @@
 ﻿@inject IJSRuntime JS
 
-<div class="@AspectRatio.ToCssClass()"></div>
+<div @ref="elem" class="@AspectRatio.ToCssClass()"></div>
 
 @code {
+    [Parameter] public ChartType Type { get; set; } = ChartType.Line;
+
     [Parameter] public AspectRatio? AspectRatio { get; set; }
+
+    private ElementReference elem;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("BlazorChartist.createChart");
+            await JS.InvokeVoidAsync("BlazorChartist.createChart", new
+            {
+                Elem = elem,
+                Type = Type.ToString(),
+            });
         }
     }
 }
