@@ -19,4 +19,10 @@
     <Exec Command="npm run build:production" WorkingDirectory="ts" Condition="'$(Configuration)' != 'Debug'" />
   </Target>
 
+  <Target Name="CopyCss" BeforeTargets="CoreBuild">
+    <Copy SourceFiles="ts\node_modules\chartist\dist\chartist.css; ts\node_modules\chartist\dist\chartist.min.css"
+          DestinationFolder="wwwroot"
+          SkipUnchangedFiles="true" />
+  </Target>
+
 </Project>
