@@ -13,6 +13,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk'
+  inputs:
+    packageType: sdk
+    version: 3.1.100
+    installationPath: $(Agent.ToolsDirectory)/dotnet
 - script: dotnet build --configuration $(buildConfiguration)
-  workingDirectory: demo
   displayName: 'dotnet build $(buildConfiguration)'
