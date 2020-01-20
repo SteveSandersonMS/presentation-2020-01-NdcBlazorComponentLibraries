@@ -30,3 +30,10 @@ steps:
     PathtoPublish: 'demo/artifacts'
     ArtifactName: 'artifacts'
     publishLocation: 'Container'
+- task: NuGetAuthenticate@0
+  inputs:
+    nuGetServiceConnections: 'NuGet demo'
+- task: NuGetCommand@2
+  inputs:
+    command: push
+    nuGetFeedType: external
