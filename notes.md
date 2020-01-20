@@ -17,7 +17,6 @@ Building a nice RCL
       Beneficial only if ordering matters
  - making it linkable via MSBuild hack
  - unit testing
- - AzDO builds and automatic publishing with timestamped version
+ - [DONE] AzDO builds and automatic publishing with timestamped version
  - Routable components (but why it's not great to do)
  - [DONE] Adding XML docs for params etc.
-
