@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0AFD331F-AB7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAssemblySample", "samples\WebAssemblySample\WebAssemblySample.csproj", "{35217FFB-F603-45BA-9D7A-46DFB13E6D6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorChartist", "src\BlazorChartist\BlazorChartist.csproj", "{4EE6FF46-8EE0-4DA5-8BBE-D748B3967CCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,12 +21,17 @@ Global
 		{35217FFB-F603-45BA-9D7A-46DFB13E6D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35217FFB-F603-45BA-9D7A-46DFB13E6D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35217FFB-F603-45BA-9D7A-46DFB13E6D6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE6FF46-8EE0-4DA5-8BBE-D748B3967CCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE6FF46-8EE0-4DA5-8BBE-D748B3967CCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE6FF46-8EE0-4DA5-8BBE-D748B3967CCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE6FF46-8EE0-4DA5-8BBE-D748B3967CCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{35217FFB-F603-45BA-9D7A-46DFB13E6D6F} = {558B72E5-C75C-48B6-B20C-B9B6FBFCF68B}
+		{4EE6FF46-8EE0-4DA5-8BBE-D748B3967CCD} = {0AFD331F-AB7B-4488-BB68-904D54C1A9F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32C68C8B-3BF9-4B8C-AFC6-EFCD6E764DAA}
