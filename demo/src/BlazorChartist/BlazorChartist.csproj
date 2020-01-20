@@ -5,6 +5,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <PackageId>Demo.BlazorChartist</PackageId>
     <PackageDescription>Demonstration of a Blazor components package. Not intended for actual use.</PackageDescription>
+    <IncludeContentInPack>false</IncludeContentInPack>
   </PropertyGroup>
 
   <ItemGroup>
