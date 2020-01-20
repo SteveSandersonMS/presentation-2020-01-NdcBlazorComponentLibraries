@@ -20,6 +20,8 @@
 
     [Parameter] public bool ShowArea { get; set; }
 
+    [Parameter] public EventCallback<DataClickedEventArgs> OnDataClicked { get; set; }
+
     // Combine any supplied 'class' with the generated one
     private string CssClass => ExtraAttributes != null && ExtraAttributes.TryGetValue("class", out var suppliedClass)
         ? $"{suppliedClass} {AspectRatio.ToCssClass()}"
@@ -49,11 +51,13 @@
     }
 
     [JSInvokable]
-    public void OnSeriesEntryClicked(int seriesIndex, int entryIndex)
+    public async Task OnSeriesEntryClicked(int seriesIndex, int entryIndex)
     {
         // Remember that seriesIndex/entryIndex are *not* trusted input
-        var series = Data.Series[seriesIndex];
-        var value = series.Data.Skip(entryIndex).FirstOrDefault();
-        Console.WriteLine($"You clicked an item with value {value}");
+        await OnDataClicked.InvokeAsync(new DataClickedEventArgs
+        {
+            Series = Data.Series[seriesIndex],
+            EntryIndex = entryIndex
+        });
     }
 }

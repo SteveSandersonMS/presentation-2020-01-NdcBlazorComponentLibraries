@@ -14,7 +14,7 @@ Welcome to your new app.
     <Series Values="@(new double[] { 5, 2, 3, 7, 1 })" Name="Beta" />
 </Chart>
 
-<Chart Type="ChartType.Line" Labels="@Labels" ShowArea="true">
+<Chart Type="ChartType.Line" Labels="@Labels" ShowArea="true" OnDataClicked="HandleDataClicked">
     <Series Values="@Values" />
 </Chart>
 
@@ -24,4 +24,10 @@ Welcome to your new app.
     private double[] Values = new double[] { 1, 2, 3, 2, 1 };
 
     bool includeSeries = true;
+
+    void HandleDataClicked(DataClickedEventArgs eventArgs)
+    {
+        var value = eventArgs.Series.Data.Skip(eventArgs.EntryIndex).FirstOrDefault();
+        Console.WriteLine($"User clicked an item with value {value}");
+    }
 }
