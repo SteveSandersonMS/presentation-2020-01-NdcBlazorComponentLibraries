@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorChartist", "src\Blazo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSample", "samples\ServerSample\ServerSample.csproj", "{77B4C562-EC6E-4EE4-9316-2E2DD919671E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build config", "Build config", "{CED40FF4-8AC5-4504-BDE1-6EB6CF1F5744}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{CED40FF4-8AC5-4504-BDE1-6EB6CF1F5744}"
 	ProjectSection(SolutionItems) = preProject
 		azure-pipelines.yml = azure-pipelines.yml
 	EndProjectSection
