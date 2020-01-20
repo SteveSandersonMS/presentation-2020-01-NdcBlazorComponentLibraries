@@ -4,12 +4,17 @@
 
 Welcome to your new app.
 
+<input type="checkbox" @bind="includeSeries" />
+
 <Chart Type="ChartType.Bar" Labels="@Labels">
-    <Series Values="@Values" Name="Alpha" />
+    @if (includeSeries)
+    {
+        <Series Values="@Values" Name="Alpha" />
+    }
     <Series Values="@(new double[] { 5, 2, 3, 7, 1 })" Name="Beta" />
 </Chart>
 
-<Chart Type="ChartType.Line" Labels="@Labels">
+<Chart Type="ChartType.Line" Labels="@Labels" ShowArea="true">
     <Series Values="@Values" />
 </Chart>
 
@@ -17,4 +22,6 @@ Welcome to your new app.
     private string[] Labels = new[] { "A", "B", "C", "D", "E" };
 
     private double[] Values = new double[] { 1, 2, 3, 2, 1 };
+
+    bool includeSeries = true;
 }

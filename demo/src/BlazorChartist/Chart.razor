@@ -15,6 +15,8 @@
 
     [Parameter] public IEnumerable<string> Labels { get; set; }
 
+    [Parameter] public bool ShowArea { get; set; }
+
     internal ChartData Data { get; private set; } = new ChartData();
 
     private ElementReference elem;
@@ -27,6 +29,6 @@
         }
 
         Data.Labels = Labels;
-        await JS.InvokeVoidAsync("BlazorChartist.update", elem, Data);
+        await JS.InvokeVoidAsync("BlazorChartist.update", elem, Data, new { ShowArea });
     }
 }
