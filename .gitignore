@@ -3,3 +3,4 @@ bin/
 obj/
 *.csproj.user
 node_modules/
+demo/artifacts/
