@@ -1,0 +1,61 @@
+﻿@inject IJSRuntime JS
+@implements IDisposable
+
+<div @ref="elem" @attributes="@ExtraAttributes" class="@CssClass">
+    <CascadingValue Value="this">@ChildContent</CascadingValue>
+</div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    [Parameter] public ChartType Type { get; set; } = ChartType.Line;
+
+    [Parameter] public AspectRatio? AspectRatio { get; set; }
+
+    [Parameter] public IEnumerable<string> Labels { get; set; }
+
+    [Parameter] public bool ShowArea { get; set; }
+
+    [Parameter] public EventCallback<DataClickedEventArgs> OnDataClicked { get; set; }
+
+    // Combine any supplied 'class' with the generated one
+    private string CssClass => ExtraAttributes != null && ExtraAttributes.TryGetValue("class", out var suppliedClass)
+        ? $"{suppliedClass} {AspectRatio.ToCssClass()}"
+        : AspectRatio.ToCssClass();
+
+    internal ChartData Data { get; private set; } = new ChartData();
+
+    private ElementReference elem;
+    private DotNetObjectReference<Chart> thisReference;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            thisReference = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("BlazorChartist.init", thisReference, elem, Type.ToString());
+        }
+
+        Data.Labels = Labels;
+        await JS.InvokeVoidAsync("BlazorChartist.update", elem, Data, new { ShowArea });
+    }
+
+    void IDisposable.Dispose()
+    {
+        // Explicitly dispose so we don't have to trust client-side JS to do it
+        thisReference?.Dispose();
+    }
+
+    [JSInvokable]
+    public async Task OnSeriesEntryClicked(int seriesIndex, int entryIndex)
+    {
+        // Remember that seriesIndex/entryIndex are *not* trusted input
+        await OnDataClicked.InvokeAsync(new DataClickedEventArgs
+        {
+            Series = Data.Series[seriesIndex],
+            EntryIndex = entryIndex
+        });
+    }
+}
