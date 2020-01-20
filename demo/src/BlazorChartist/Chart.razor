@@ -15,28 +15,25 @@
 
     [Parameter] public IEnumerable<string> Labels { get; set; }
 
+    [Parameter] public List<object> Series { get; set; } = new List<object>();
+
     private ElementReference elem;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("BlazorChartist.createChart", new
-            {
-                Elem = elem,
-                Type = Type.ToString(),
-                Labels
-            });
+            await JS.InvokeVoidAsync("BlazorChartist.init", elem, Type.ToString());
+            await UpdateAsync();
         }
     }
 
-    internal async Task AddSeriesAsync<TData>(string id, IEnumerable<TData> values)
+    public async Task UpdateAsync()
     {
-        await JS.InvokeVoidAsync("BlazorChartist.addSeries", elem, id, values);
-    }
-
-    internal async Task RemoveSeriesAsync(string id)
-    {
-        await JS.InvokeVoidAsync("BlazorChartist.removeSeries", elem, id);
+        await JS.InvokeVoidAsync("BlazorChartist.update", elem, new
+        {
+            Labels,
+            Series,
+        });
     }
 }

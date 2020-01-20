@@ -5,18 +5,18 @@
 
     [Parameter] public IEnumerable<TData> Values { get; set; }
 
-    private string id = Guid.NewGuid().ToString();
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await OwnerChart.AddSeriesAsync(id, Values);
+            OwnerChart.Series.Add(Values);
+            await OwnerChart.UpdateAsync();
         }
     }
 
     void IDisposable.Dispose()
     {
-        _ = OwnerChart.RemoveSeriesAsync(id);
+        OwnerChart.Series.Remove(Values);
+        _ = OwnerChart.UpdateAsync();
     }
 }
