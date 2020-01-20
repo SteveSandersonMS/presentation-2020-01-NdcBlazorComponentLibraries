@@ -19,5 +19,5 @@ Building a nice RCL
  - unit testing
  - AzDO builds and automatic publishing with timestamped version
  - Routable components (but why it's not great to do)
- - Adding XML docs for params etc.
+ - [DONE] Adding XML docs for params etc.
 
