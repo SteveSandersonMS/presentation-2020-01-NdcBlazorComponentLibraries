@@ -1,4 +1,4 @@
-﻿namespace BlazorChartist
+﻿namespace BlazorChartist.Data
 {
     public enum ChartType
     {

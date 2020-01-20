@@ -1,4 +1,4 @@
-﻿import { IChartistBase, IChartOptions, IChartistData, Bar, Line } from 'chartist';
+﻿import { IChartistBase, IChartOptions, IChartistData, Bar, Line, IChartistSeriesData } from 'chartist';
 
 export default class BlazorChartist {
     static init(elem: Element, type: 'Bar' | 'Line') {

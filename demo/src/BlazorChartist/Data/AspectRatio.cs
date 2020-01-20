@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace BlazorChartist
+namespace BlazorChartist.Data
 {
     public enum AspectRatio
     {

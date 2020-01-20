@@ -1,22 +1,26 @@
-﻿@typeparam TData
-@implements IDisposable
+﻿@implements IDisposable
 @code {
     [CascadingParameter] public Chart OwnerChart { get; set; }
 
-    [Parameter] public IEnumerable<TData> Values { get; set; }
+    [Parameter] public string Name { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    [Parameter] public IEnumerable<double> Values { get; set; }
+
+    private readonly SeriesData data = new SeriesData();
+
+    protected override void OnParametersSet()
     {
-        if (firstRender)
-        {
-            OwnerChart.Series.Add(Values);
-            await OwnerChart.UpdateAsync();
-        }
+        data.Name = Name;
+        data.Data = Values;
+    }
+
+    protected override void OnInitialized()
+    {
+        OwnerChart.Data.Series.Add(data);
     }
 
     void IDisposable.Dispose()
     {
-        OwnerChart.Series.Remove(Values);
-        _ = OwnerChart.UpdateAsync();
+        OwnerChart.Data.Series.Remove(data);
     }
 }

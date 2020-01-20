@@ -15,7 +15,7 @@
 
     [Parameter] public IEnumerable<string> Labels { get; set; }
 
-    [Parameter] public List<object> Series { get; set; } = new List<object>();
+    internal ChartData Data { get; private set; } = new ChartData();
 
     private ElementReference elem;
 
@@ -24,16 +24,9 @@
         if (firstRender)
         {
             await JS.InvokeVoidAsync("BlazorChartist.init", elem, Type.ToString());
-            await UpdateAsync();
         }
-    }
 
-    public async Task UpdateAsync()
-    {
-        await JS.InvokeVoidAsync("BlazorChartist.update", elem, new
-        {
-            Labels,
-            Series,
-        });
+        Data.Labels = Labels;
+        await JS.InvokeVoidAsync("BlazorChartist.update", elem, Data);
     }
 }
