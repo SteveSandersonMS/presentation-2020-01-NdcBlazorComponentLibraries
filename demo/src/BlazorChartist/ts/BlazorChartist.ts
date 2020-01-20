@@ -1,3 +1,7 @@
 ﻿import * as Chartist from 'chartist';
 
-console.log(Chartist);
+export default class BlazorChartist {
+    static log() {
+        console.log(Chartist.Line);
+    }
+}

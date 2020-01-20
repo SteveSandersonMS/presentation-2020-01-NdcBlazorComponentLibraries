@@ -9,6 +9,9 @@ module.exports = (env, args) => ({
     entry: './BlazorChartist.ts',
     output: {
         path: path.join(__dirname, '..', 'wwwroot'),
-        filename: 'BlazorChartist.js'
+        filename: 'BlazorChartist.js',
+        libraryTarget: 'var',
+        library: 'BlazorChartist',
+        libraryExport: 'default'
     }
 });
