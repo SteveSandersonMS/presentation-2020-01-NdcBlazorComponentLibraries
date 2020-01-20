@@ -4,6 +4,12 @@
 
 Welcome to your new app.
 
-<Chart Type="ChartType.Bar" />
+<Chart Type="ChartType.Bar" Labels="@Labels" Series="new[] { Values }" />
 
-<Chart Type="ChartType.Line" />
+<Chart Type="ChartType.Line" Labels="@Labels" Series="new[] { Values }" />
+
+@code {
+    private string[] Labels = new[] { "A", "B", "C", "D", "E" };
+
+    private double[] Values = new double[] { 1, 2, 3, 2, 1 };
+}

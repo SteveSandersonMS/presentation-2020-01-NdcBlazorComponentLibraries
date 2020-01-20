@@ -3,13 +3,9 @@
 export default class BlazorChartist {
 
     static createChart(options: BlazorChartistOptions) {
-        var data = {
-            // A labels array that can contain any sort of values
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-            // Our series array that contains series objects or in this case series data arrays
-            series: [
-                [5, 2, 4, 2, 0]
-            ]
+        const data: Chartist.IChartistData = {
+            labels: options.labels,
+            series: options.series,
         };
 
         switch (options.type) {
@@ -25,5 +21,7 @@ export default class BlazorChartist {
 
 interface BlazorChartistOptions {
     elem: Element,
-    type: 'Bar' | 'Line';
+    type: 'Bar' | 'Line',
+    labels: string[],
+    series: number[][],
 }

@@ -7,6 +7,10 @@
 
     [Parameter] public AspectRatio? AspectRatio { get; set; }
 
+    [Parameter] public IEnumerable<string> Labels { get; set; }
+
+    [Parameter] public double[][] Series { get; set; }
+
     private ElementReference elem;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -17,6 +21,8 @@
             {
                 Elem = elem,
                 Type = Type.ToString(),
+                Labels,
+                Series,
             });
         }
     }
