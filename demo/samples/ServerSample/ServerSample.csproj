@@ -1,7 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebAssemblySample\WebAssemblySample.csproj" />
+  </ItemGroup>
+
+  <Target Name="CopyWwwrootFiles" BeforeTargets="CoreBuild">
+    <ItemGroup>
+      <_FilesToCopy Include="..\WebAssemblySample\wwwroot\**" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_FilesToCopy)"
+          DestinationFolder="wwwroot\%(RecursiveDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
 
 </Project>

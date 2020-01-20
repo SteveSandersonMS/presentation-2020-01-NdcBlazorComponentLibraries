@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using WebAssemblySample
 @namespace ServerSample.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -14,6 +15,7 @@
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
+    <link href="_content/BlazorChartist/chartist.min.css" rel="stylesheet" />
 </head>
 <body>
     <app>
@@ -31,6 +33,7 @@
         <a class="dismiss">🗙</a>
     </div>
 
+    <script src="_content/BlazorChartist/BlazorChartist.js"></script>
     <script src="_framework/blazor.server.js"></script>
 </body>
 </html>
