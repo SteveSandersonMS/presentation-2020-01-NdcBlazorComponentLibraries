@@ -31,6 +31,8 @@ steps:
     ArtifactName: 'artifacts'
     publishLocation: 'Container'
 - task: NuGetCommand@2
+  displayName: 'Publish to nuget.org'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     command: push
     packagesToPush: 'demo/artifacts/*.nupkg'
