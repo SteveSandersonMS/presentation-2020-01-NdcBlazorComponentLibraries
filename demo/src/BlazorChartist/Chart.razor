@@ -1,11 +1,13 @@
-﻿<div class="ct-chart ct-perfect-fourth"></div>
+﻿@inject IJSRuntime JS
+
+<div class="ct-chart"></div>
+
 @code {     
-    protected override Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            
+            await JS.InvokeVoidAsync("BlazorChartist.createChart");
         }
-        return Task.CompletedTask;
     }
 }
