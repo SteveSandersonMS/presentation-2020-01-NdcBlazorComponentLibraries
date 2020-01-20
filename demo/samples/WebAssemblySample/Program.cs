@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Blazor.Hosting;
 
-namespace BlazorChartist.Sample
+namespace WebAssemblySample
 {
     public class Program
     {
