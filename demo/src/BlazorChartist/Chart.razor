@@ -2,9 +2,7 @@
 @implements IDisposable
 
 <div @ref="elem" @attributes="@ExtraAttributes" class="@CssClass">
-    <CascadingValue Value="this">
-        @ChildContent
-    </CascadingValue>
+    <CascadingValue Value="this">@ChildContent</CascadingValue>
 </div>
 
 @code {
