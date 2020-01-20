@@ -1,4 +1,5 @@
 ﻿@inject IJSRuntime JS
+@implements IDisposable
 
 <div @ref="elem" @attributes="@ExtraAttributes" class="@CssClass">
     <CascadingValue Value="this">
@@ -27,15 +28,32 @@
     internal ChartData Data { get; private set; } = new ChartData();
 
     private ElementReference elem;
+    private DotNetObjectReference<Chart> thisReference;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("BlazorChartist.init", elem, Type.ToString());
+            thisReference = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("BlazorChartist.init", thisReference, elem, Type.ToString());
         }
 
         Data.Labels = Labels;
         await JS.InvokeVoidAsync("BlazorChartist.update", elem, Data, new { ShowArea });
+    }
+
+    void IDisposable.Dispose()
+    {
+        // Explicitly dispose so we don't have to trust client-side JS to do it
+        thisReference?.Dispose();
+    }
+
+    [JSInvokable]
+    public void OnSeriesEntryClicked(int seriesIndex, int entryIndex)
+    {
+        // Remember that seriesIndex/entryIndex are *not* trusted input
+        var series = Data.Series[seriesIndex];
+        var value = series.Data.Skip(entryIndex).FirstOrDefault();
+        Console.WriteLine($"You clicked an item with value {value}");
     }
 }

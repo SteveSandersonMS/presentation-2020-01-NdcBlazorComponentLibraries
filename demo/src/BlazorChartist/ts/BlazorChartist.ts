@@ -1,13 +1,22 @@
 ﻿import * as Chartist from 'chartist';
+import { IChartistBase, IChartOptions } from 'chartist';
 
 export default class BlazorChartist {
-    static init(elem: Element, type: 'Bar' | 'Line' | 'Pie') {
+    static init(component: any, elem: Element, type: 'Bar' | 'Line' | 'Pie') {
         const constructor = Chartist[type];
-        elem['_chart'] = new constructor(elem, { series: [] });
+        const chart: IChartistBase<IChartOptions> = new constructor(elem, { series: [] });
+        elem['_chart'] = chart;
+
+        chart.on('draw', data => {
+            if (data.type === 'point' || data.type === 'bar') {
+                data.element._node.addEventListener('click', () => {
+                    component.invokeMethodAsync('OnSeriesEntryClicked', data.seriesIndex, data.index);
+                });
+            }
+        });
     }
 
     static update(elem: Element, data: Chartist.IChartistData, options: Chartist.IChartOptions) {
-        //data.series = (data.series[0] as any).data;
         elem['_chart'].update(data, options);
     }
 }
