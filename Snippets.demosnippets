@@ -1,0 +1,106 @@
+TAB: Creating & running RCL
+
+- <link> to CSS file
+
+<link href="_content/BlazorChartist/styles.css" rel="stylesheet" />
+
+TAB: Wrapping 3rd party JS
+
+- Whole Chart.razor contents making JS interop call
+
+<div @ref="elem" class="ct-chart"></div>
+
+@inject IJSRuntime JS
+@code {
+    ElementReference elem;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("BlazorChartist.createChart", elem);
+        }
+    }
+}
+
+TAB: Defining an API
+
+- private ChartData sampleData = ...
+
+@code {
+    private static string[] labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
+    private static double[] oilPrices = new double[] { 51, 55, 68, 52, 51 };
+    private static double[] trumpTweets = new double[] { 35, 19, 26, 68, 21 };
+
+    private ChartData sampleData = new ChartData
+    {
+        Labels = labels,
+        Series = new List<SeriesData>
+        {
+            new SeriesData { Name = "Crude oil price ($)", Data = oilPrices },
+            new SeriesData { Name = "Trump tweets", Data = trumpTweets },
+        }
+    };
+}
+
+- Two uses of <Chart />
+
+<Chart Type="ChartType.Bar" Data="@sampleData" />
+
+<Chart Type="ChartType.Line" Data="@sampleData" />
+
+TAB: Designing a better API
+
+- [Parameter] for Labels
+
+[Parameter] public IEnumerable<string> Labels { get; set; }
+
+- Data.Labels = Labels;
+
+Data.Labels = Labels;
+
+- [Parameter] for ChildContent
+
+[Parameter] public RenderFragment ChildContent { get; set; }
+
+- <CascadingValue> for this
+
+<CascadingValue Value="@this">
+    @ChildContent
+</CascadingValue>
+
+- bool showTrumpTweets = true;
+
+bool showTrumpTweets = true;
+
+- <input type="checkbox" @bind="showTrumpTweets" />
+
+<input type="checkbox" @bind="showTrumpTweets" />
+
+- title="Graph of oil vs tweets" style="background-color: lightyellow;"
+
+title="Graph of oil vs tweets" style="background-color: lightyellow;"
+
+- [Parameter] with CaptureUnmatchedValues
+
+[Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
+
+- @attributes="@ExtraAttributes"
+
+@attributes="@ExtraAttributes"
+
+TAB: Adding XML docs
+
+- Summary text for <Series> class
+
+Adds a data series to the enclosing <see cref="Chart"/> component.
+
+- Summary text for Labels prop
+
+Specifies X-axis (catergory) labels.
+
+TAB: Ensuring compatibility
+
+TAB: Adding a Webpack build
+
+TAB: CI/CD
