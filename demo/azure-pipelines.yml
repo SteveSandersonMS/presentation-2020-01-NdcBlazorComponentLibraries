@@ -31,15 +31,3 @@ steps:
     PathtoPublish: 'demo/artifacts'
     ArtifactName: 'artifacts'
     publishLocation: 'Container'
-
-# Uploads the NuGet package file to nuget.org
-# For this to work, you need to create a 'service connection' with the same name
-# as the 'publishFeedCredentials' value
-- task: NuGetCommand@2
-  displayName: 'Publish to nuget.org'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  inputs:
-    command: push
-    packagesToPush: 'demo/artifacts/*.nupkg'
-    nuGetFeedType: external
-    publishFeedCredentials: 'NuGet demo'
