@@ -1,7 +1,19 @@
-﻿<div @ref="elem" class="ct-chart">
-    TODO: Tell chartist.js to draw a chart into this element
-</div>
+<div @ref="elem" class="ct-chart"></div>
 
+@inject IJSRuntime JS
 @code {
     ElementReference elem;
+
+    [Parameter] public ChartType Type { get; set; }
+    [Parameter] public ChartData Data { get; set; } = new ChartData();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("BlazorChartist.createChart", elem, Type.ToString());
+        }
+
+        await JS.InvokeVoidAsync("BlazorChartist.updateChart", elem, Data);
+    }
 }

@@ -1,11 +1,12 @@
 ﻿var BlazorChartist = {
 
-    createChart: function (elem) {
-        // An example pasted from chartist.js docs
-        new Chartist.Line(elem, {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-            series: [[5, 2, 4, 2, 0]]
-        });
+    createChart: function (elem, type) {
+        var constructor = Chartist[type];
+        elem.chart = new constructor(elem, { series: [] });
+    },
+
+    updateChart: function (elem, data) {
+        elem.chart.update(data);
     }
 
 };
