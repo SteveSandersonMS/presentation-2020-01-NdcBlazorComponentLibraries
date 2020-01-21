@@ -51,24 +51,6 @@ TAB: Defining an API
 
 TAB: Designing a better API
 
-- [Parameter] for Labels
-
-[Parameter] public IEnumerable<string> Labels { get; set; }
-
-- Data.Labels = Labels;
-
-Data.Labels = Labels;
-
-- [Parameter] for ChildContent
-
-[Parameter] public RenderFragment ChildContent { get; set; }
-
-- <CascadingValue> for this
-
-<CascadingValue Value="@this">
-    @ChildContent
-</CascadingValue>
-
 - bool showTrumpTweets = true;
 
 bool showTrumpTweets = true;

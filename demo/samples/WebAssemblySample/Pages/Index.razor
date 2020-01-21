@@ -4,4 +4,17 @@
 
 Welcome to your new app.
 
-<Chart />
+<Chart Type="ChartType.Bar" Labels="@labels">
+    <Series Name="Oil price" Values="@oilPrices" />
+    <Series Name="Trump tweets" Values="@trumpTweets" />
+</Chart>
+
+<Chart Type="ChartType.Line" Labels="@labels">
+    <Series Name="Oil price" Values="@oilPrices" />
+</Chart>
+
+@code {
+    private string[] labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
+    private double[] oilPrices = new double[] { 51, 55, 68, 52, 51 };
+    private double[] trumpTweets = new double[] { 35, 19, 26, 68, 21 };
+}
