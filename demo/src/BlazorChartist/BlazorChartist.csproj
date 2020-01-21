@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <PackageId>Demo.BlazorChartist</PackageId>
-    <PackageDescription>Demonstration of a Blazor components package. Not intended for actual use.</PackageDescription>
+    <PackageDescription>Demonstration of a Blazor components package. Not intended for actual use. Hmm.</PackageDescription>
     <IncludeContentInPack>false</IncludeContentInPack>
   </PropertyGroup>
 
