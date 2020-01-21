@@ -5,14 +5,45 @@ VisualStudioVersion = 16.0.29519.161
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0AFD331F-AB7B-4488-BB68-904D54C1A9F4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorChartist", "src\BlazorChartist\BlazorChartist.csproj", "{EE88DA90-8BB5-4398-8486-73B2AF298600}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{7C6D788B-7ECE-4211-AD23-4404A6BC266A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAssemblySample", "samples\WebAssemblySample\WebAssemblySample.csproj", "{E441D3D6-8B37-4103-BD80-FCDCF141703B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSample", "samples\ServerSample\ServerSample.csproj", "{C01C32F4-DE64-48D6-80BC-7A589E831052}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "snippets", "snippets", "{A423D787-875F-4F20-B53C-A7F53F96448A}"
 	ProjectSection(SolutionItems) = preProject
 		..\Snippets.demosnippets = ..\Snippets.demosnippets
 	EndProjectSection
 EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE88DA90-8BB5-4398-8486-73B2AF298600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE88DA90-8BB5-4398-8486-73B2AF298600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE88DA90-8BB5-4398-8486-73B2AF298600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE88DA90-8BB5-4398-8486-73B2AF298600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E441D3D6-8B37-4103-BD80-FCDCF141703B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E441D3D6-8B37-4103-BD80-FCDCF141703B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E441D3D6-8B37-4103-BD80-FCDCF141703B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E441D3D6-8B37-4103-BD80-FCDCF141703B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01C32F4-DE64-48D6-80BC-7A589E831052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01C32F4-DE64-48D6-80BC-7A589E831052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01C32F4-DE64-48D6-80BC-7A589E831052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01C32F4-DE64-48D6-80BC-7A589E831052}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE88DA90-8BB5-4398-8486-73B2AF298600} = {0AFD331F-AB7B-4488-BB68-904D54C1A9F4}
+		{E441D3D6-8B37-4103-BD80-FCDCF141703B} = {7C6D788B-7ECE-4211-AD23-4404A6BC266A}
+		{C01C32F4-DE64-48D6-80BC-7A589E831052} = {7C6D788B-7ECE-4211-AD23-4404A6BC266A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32C68C8B-3BF9-4B8C-AFC6-EFCD6E764DAA}
