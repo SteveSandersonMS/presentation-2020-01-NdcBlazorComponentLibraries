@@ -13,6 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAssemblySample", "sample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSample", "samples\ServerSample\ServerSample.csproj", "{C01C32F4-DE64-48D6-80BC-7A589E831052}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{1A1FDCF0-9EAE-4638-B0A8-DC42D5451182}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "snippets", "snippets", "{A423D787-875F-4F20-B53C-A7F53F96448A}"
 	ProjectSection(SolutionItems) = preProject
 		..\Snippets.demosnippets = ..\Snippets.demosnippets
