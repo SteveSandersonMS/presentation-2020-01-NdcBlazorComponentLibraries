@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 namespace BlazorChartist
 {
-    // This will be a "data-only" component. It won't render any markup,
-    // so there's no need to use a .razor file (though you could).
+    /// <summary>
+    /// Adds a data series to the enclosing <see cref="Chart"/> component.
+    /// </summary>
     public class Series : ComponentBase, IDisposable
     {
         // Accept data via Razor syntax

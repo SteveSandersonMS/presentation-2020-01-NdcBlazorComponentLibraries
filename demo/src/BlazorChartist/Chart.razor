@@ -1,4 +1,4 @@
-<div @ref="elem" class="ct-chart"></div>
+<div @ref="elem" class="ct-chart" @attributes="@ExtraAttributes"></div>
 
 @* Pass 'this' instance as a cascading parameter to descendants in tree *@
 <CascadingValue Value="@this">
@@ -9,9 +9,14 @@
 @code {
     ElementReference elem;
 
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
     [Parameter] public ChartType Type { get; set; }
     [Parameter] public ChartData Data { get; set; } = new ChartData();
+
+    /// <summary>
+    /// Specifies X-axis (catergory) labels.
+    /// </summary>
     [Parameter] public IEnumerable<string> Labels { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

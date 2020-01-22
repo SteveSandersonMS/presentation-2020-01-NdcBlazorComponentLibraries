@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build:Debug": "webpack --mode development",
+    "build:Release": "webpack --mode production"
+  },
+  "devDependencies": {
+    "@types/chartist": "^0.9.47",
+    "chartist": "^0.11.4",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
